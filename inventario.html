@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario | POSCafé</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark menu-principal" aria-label="Menú principal">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">POSCafé</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir o cerrar el menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pos.html">Punto de venta</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="inventario.html">Inventario</a></li>
+          <li class="nav-item"><a class="nav-link" href="usuarios.html">Usuarios</a></li>
+          <li class="nav-item"><a class="nav-link" href="ventas.html">Historial de ventas</a></li>
+          <li class="nav-item"><a class="nav-link" href="base-datos.html">Base de datos</a></li>
+          </ul>
+          <div id="zona-sesion" class="d-flex align-items-center"></div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div id="avisos" class="avisos" aria-live="polite"></div>
+
+  <main class="container py-4">
+    <h1 class="mb-1">Inventario</h1>
+    <p class="text-secondary">Consulta las existencias y actualiza las cantidades disponibles.</p>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <section class="tarjeta" aria-labelledby="titulo-inv">
+          <h2 id="titulo-inv" class="h5 mb-3">Actualizar existencias</h2>
+          <form id="form-inventario" novalidate>
+            <div class="mb-3">
+              <label for="productoId" class="form-label">Producto</label>
+              <select class="form-select" id="productoId" name="productoId"></select>
+              <div class="invalid-feedback" data-error="productoId"></div>
+            </div>
+            <div class="mb-3">
+              <label for="cantidad" class="form-label">Nueva cantidad disponible</label>
+              <input type="number" class="form-control" id="cantidad" name="cantidad" min="0" step="any" inputmode="numeric">
+              <div class="invalid-feedback" data-error="cantidad"></div>
+            </div>
+            <div class="mb-3">
+              <label for="motivo" class="form-label">Motivo del cambio</label>
+              <select class="form-select" id="motivo" name="motivo">
+                <option value="">Selecciona un motivo</option>
+                <option value="Reabastecimiento">Reabastecimiento</option>
+                <option value="Conteo de inventario">Conteo de inventario</option>
+                <option value="Merma">Merma</option>
+              </select>
+              <div class="invalid-feedback" data-error="motivo"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+          </form>
+        </section>
+      </div>
+      <div class="col-lg-8">
+        <section class="tarjeta" aria-labelledby="titulo-exist">
+          <h2 id="titulo-exist" class="h5 mb-3">Existencias actuales</h2>
+          <div class="table-responsive">
+            <table class="table align-middle mb-0">
+              <thead>
+                <tr><th scope="col">Producto</th><th scope="col">Categoría</th><th scope="col" class="text-end">Existencias</th><th scope="col">Estado</th></tr>
+              </thead>
+              <tbody id="tabla-inventario"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="container">
+      <p class="mb-1"><strong>POSCafé</strong>: sistema de punto de venta para cafeterías.</p>
+      <p class="mb-1">Equipo: Angel Zared Fuentes Lopez, Diego Isaiah Lizarraga Ramírez y Diego Eduardo Sanchez Vazquez.</p>
+      <p class="mb-0">Fecha actual: <span data-fecha></span></p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/logica.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/almacen.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/fecha.js"></script>
+  <script src="js/formularios.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/inventario.js"></script>
+</body>
+</html>

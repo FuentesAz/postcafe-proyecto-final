@@ -1,0 +1,263 @@
+
+
+:root {
+  --espresso: #2b1d15;
+  --espresso-2: #4a3326;
+  --jade: #14705f;
+  --jade-oscuro: #0e5448;
+  --ambar: #e8a33d;
+  --fondo: #f2f3ef;
+  --superficie: #ffffff;
+  --tinta: #1f2421;
+  --tinta-suave: #5a625d;
+  --borde: #dcdfd8;
+  --cat-1: #7a4b2a;   /* Cafés */
+  --cat-2: #1f7a9c;   /* Bebidas frías */
+  --cat-3: #b5476b;   /* Postres */
+  --cat-4: #6b7f2a;   /* Alimentos */
+
+  /* Ajustes de Bootstrap */
+  --bs-primary: #14705f;
+  --bs-primary-rgb: 20, 112, 95;
+  --bs-link-color: #0e5448;
+  --bs-link-hover-color: #0a3f36;
+  --bs-body-color: #1f2421;
+  --bs-body-font-family: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background: var(--fondo);
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ambar);
+  outline-offset: 2px;
+}
+
+/* Utilidades mínimas por si Bootstrap no carga */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+
+/* ---------- Botones ---------- */
+.btn-primary {
+  --bs-btn-bg: var(--jade);
+  --bs-btn-border-color: var(--jade);
+  --bs-btn-hover-bg: var(--jade-oscuro);
+  --bs-btn-hover-border-color: var(--jade-oscuro);
+  --bs-btn-active-bg: #0a3f36;
+  --bs-btn-active-border-color: #0a3f36;
+  --bs-btn-disabled-bg: var(--jade);
+  --bs-btn-disabled-border-color: var(--jade);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--jade-oscuro);
+  --bs-btn-border-color: var(--jade);
+  --bs-btn-hover-bg: var(--jade);
+  --bs-btn-hover-border-color: var(--jade);
+  --bs-btn-active-bg: var(--jade-oscuro);
+  --bs-btn-active-border-color: var(--jade-oscuro);
+}
+
+/* ---------- Menú ---------- */
+.menu-principal { background: var(--espresso); }
+.menu-principal .navbar-brand { font-weight: 800; letter-spacing: 0.01em; }
+.menu-principal .nav-link { color: rgba(255, 255, 255, 0.78); padding-inline: 0.85rem; }
+.menu-principal .nav-link:hover,
+.menu-principal .nav-link:focus { color: #fff; }
+.menu-principal .nav-link.active {
+  color: #fff;
+  box-shadow: inset 0 -3px 0 var(--ambar);
+}
+
+/* ---------- Estructura general ---------- */
+main { min-height: 70vh; }
+h1 { font-weight: 800; font-size: clamp(1.6rem, 2.2vw + 1rem, 2.2rem); }
+h2, h3 { font-weight: 700; }
+
+.tarjeta {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 0.6rem;
+  padding: 1.25rem;
+}
+.saludo { color: var(--jade-oscuro); font-weight: 700; margin: 0; }
+
+.avisos {
+  position: fixed;
+  top: 4.5rem;
+  right: 1rem;
+  z-index: 1080;
+  width: min(24rem, calc(100vw - 2rem));
+}
+
+.pie {
+  background: var(--espresso);
+  color: rgba(255, 255, 255, 0.82);
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  font-size: 0.9rem;
+}
+.pie strong { color: #fff; }
+
+/* ---------- Resumen del día ---------- */
+.dato {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--jade);
+  border-radius: 0.5rem;
+  padding: 0.9rem 1rem;
+  height: 100%;
+}
+.dato-valor { display: block; font-size: 1.6rem; font-weight: 800; line-height: 1.2; }
+.dato-etiqueta { color: var(--tinta-suave); font-size: 0.9rem; }
+
+/* ---------- Productos del punto de venta ---------- */
+.producto {
+  --cat: var(--cat-1);
+  width: 100%;
+  height: 100%;
+  min-height: 94px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 6px solid var(--cat);
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.85rem;
+  color: var(--tinta);
+}
+.producto.cat-1 { --cat: var(--cat-1); }
+.producto.cat-2 { --cat: var(--cat-2); }
+.producto.cat-3 { --cat: var(--cat-3); }
+.producto.cat-4 { --cat: var(--cat-4); }
+.producto:hover:not(:disabled) { box-shadow: 0 3px 0 var(--cat); }
+.producto:active:not(:disabled) { transform: translateY(1px); }
+.producto:disabled { opacity: 0.55; cursor: not-allowed; }
+.producto-nombre { font-weight: 700; line-height: 1.25; }
+.producto-precio { font-weight: 800; color: var(--cat); }
+.producto-stock { font-size: 0.8rem; color: var(--tinta-suave); margin-top: auto; }
+
+/* ---------- Ticket (la pieza principal del punto de venta) ---------- */
+.ticket {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-bottom: 0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 1.25rem 1.25rem 1.5rem;
+  margin-bottom: 14px;
+}
+.ticket::after {            /* borde "rasgado" de papel de ticket */
+  content: "";
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  bottom: -10px;
+  height: 10px;
+  background:
+    linear-gradient(135deg, #fff 5px, transparent 0) 0 0 / 10px 10px repeat-x,
+    linear-gradient(225deg, #fff 5px, transparent 0) 0 0 / 10px 10px repeat-x;
+}
+.ticket-fecha { color: var(--tinta-suave); font-size: 0.85rem; margin-bottom: 0.75rem; }
+.lista-ticket { list-style: none; padding: 0; margin: 0 0 0.75rem; border-top: 2px dashed var(--borde); }
+.linea {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed var(--borde);
+}
+.linea-nombre { font-weight: 600; line-height: 1.2; }
+.linea-nombre small { display: block; font-weight: 400; color: var(--tinta-suave); }
+.linea-nombre .linea-nota { color: var(--jade-oscuro); font-style: italic; margin-top: 0.1rem; }
+.linea-cantidad { display: flex; align-items: center; gap: 0.4rem; }
+.linea-cantidad span { min-width: 1.4rem; text-align: center; font-weight: 700; }
+.linea-importe { min-width: 4.5rem; text-align: right; font-weight: 700; }
+.linea-acciones { display: flex; align-items: center; gap: 0.4rem; }
+
+.usuario-ticket {
+  background: #f3f6f4;
+  border-left: 4px solid var(--jade);
+  border-radius: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  font-size: 0.875rem;
+}
+
+.edicion-carrito {
+  background: #f8f9f6;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  padding: 0.85rem;
+}
+
+.totales { margin: 0 0 1rem; }
+.totales div { display: flex; justify-content: space-between; padding: 0.15rem 0; }
+.totales dt, .totales dd { margin: 0; font-weight: 500; }
+.totales .total-final {
+  border-top: 2px solid var(--tinta);
+  margin-top: 0.4rem;
+  padding-top: 0.5rem;
+  font-size: 1.35rem;
+}
+.totales .total-final dt, .totales .total-final dd { font-weight: 800; }
+
+/* ---------- Calculadora ---------- */
+.calc { max-width: 340px; margin-inline: auto; }
+.calc-expresion { min-height: 1.4rem; text-align: right; color: var(--tinta-suave); font-size: 0.85rem; }
+.calc-pantalla {
+  display: block;
+  min-height: 3.4rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--espresso);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.calc-pantalla.calc-error { color: #ffb4a8; }
+.calc-teclas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-top: 0.75rem; }
+.calc-tecla {
+  padding: 0.75rem 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  color: var(--tinta);
+}
+.calc-tecla:hover { background: #f3f6f4; }
+.calc-tecla.op { background: #e6f0ed; color: var(--jade-oscuro); }
+.calc-tecla.igual { background: var(--jade); border-color: var(--jade); color: #fff; }
+.calc-tecla.igual:hover { background: var(--jade-oscuro); }
+
+/* ---------- Tablas y formularios ---------- */
+.table > :not(caption) > * > * { padding-block: 0.65rem; }
+.table thead th { background: var(--espresso); color: #fff; font-weight: 600; border-color: var(--espresso); }
+.form-label, legend.h6 { font-weight: 600; }
+.invalid-feedback { font-size: 0.875rem; }
+
+.cuadro-bd {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 0.5rem;
+  padding: 1rem 1.1rem;
+  height: 100%;
+}
+.cuadro-bd code { color: var(--jade-oscuro); }
+
+@media (max-width: 575.98px) {
+  .linea { grid-template-columns: 1fr auto; }
+  .linea-importe { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
